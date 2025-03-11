@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - HealthAssist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0077b6;
+            --secondary-color: #00b4d8;
+            --background-color: #f8f9fa;
+            --sidebar-width: 250px;
+        }
+
+        body {
+            background-color: var(--background-color);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .sidebar-header h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 5px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Chat Container Styles */
+        .chat-container {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .chat-header {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header h2 {
+            color: var(--primary-color);
+        }
+
+        .chat-header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .message.user {
+            background: var(--primary-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.bot {
+            background: white;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message .time {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .suggestions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-btn {
+            background: #e3f2fd;
+            color: var(--primary-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .chat-input {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-input input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .chat-input button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .chat-container {
+                margin-left: 0;
+            }
+
+            .message {
+                max-width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDc3YjYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJtMTkgMTQtMiAyaC00bC0yLTJNOCAxOGgtMmE0IDQgMCAwIDEtNC00di00YTQgNCAwIDAgMSA0LTRoMmE0IDQgMCAwIDEgNCA0djVhMyAzIDAgMCAxLTMgM3oiPjwvcGF0aD48cGF0aCBkPSJNMTYgMThoMmE0IDQgMCAwIDAgNC00di00YTQgNCAwIDAgMC00LTRoLTJhNCA0IDAgMCAwLTQgNHY1YTMgMyAwIDAgMCAzIDN6Ij48L3BhdGg+PC9zdmc+" alt="HealthAssist Logo">
+            <h1>HealthAssist</h1>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="/dashboard" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/appointments" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i>
+                    Appointments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/chat" class="nav-link active">
+                    <i class="fas fa-comment-medical"></i>
+                    Chat
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/profile" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/settings" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat with HealthAssist</h2>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <%= username %>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <form class="chat-input" id="chatForm">
+            <input 
+                type="text" 
+                id="messageInput" 
+                placeholder="Type your message..." 
+                required
+                autocomplete="off"
+            >
+            <button type="submit">
+                <i class="fas fa-paper-plane"></i>
+                Send
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const chatForm = document.getElementById('chatForm');
+            const messageInput = document.getElementById('messageInput');
+
+            // Add initial bot message
+            addBotMessage(
+                `Hello <%= username %>! How can I assist you today?`,
+                ['Check Symptoms', 'Book Appointment', 'Medical Information']
+            );
+
+            chatForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const message = messageInput.value.trim();
+                if (!message) return;
+
+                // Add user message
+                addUserMessage(message);
+                messageInput.value = '';
+
+                try {
+                    // Send to server
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ message })
+                    });
+
+                    if (!response.ok) throw new Error('Network response was not ok');
+
+                    const data = await response.json();
+                    addBotMessage(data.reply, data.suggestions || []);
+
+                } catch (error) {
+                    console.error('Chat error:', error);
+                    addBotMessage(
+                        "I'm sorry, but I encountered an error. Please try again.",
+                        ['Check Symptoms', 'Book Appointment', 'Medical Information']
+                    );
+                }
+            });
+
+            function addUserMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message user';
+                messageDiv.innerHTML = `
+                    ${escapeHtml(message)}
+                    <div class="time">${getCurrentTime()}</div>
+                `;
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            function addBotMessage(message, suggestions = []) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot';
+                
+                let suggestionsHtml = '';
+                if (suggestions.length > 0) {
+                    suggestionsHtml = `
+                        <div class="suggestions">
+                            ${suggestions.map(suggestion => `
+                                <button class="suggestion-btn" onclick="selectSuggestion('${escapeHtml(suggestion)}')">${escapeHtml(suggestion)}</button>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                messageDiv.innerHTML = `
+                    ${escapeHtml(message)}
+                    <div class="time">${getCurrentTime()}</div>
+                    ${suggestionsHtml}
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            function getCurrentTime() {
+                return new Date().toLocaleTimeString('en-US', { 
+                    hour: '2-digit', 
+                    minute: '2-digit'
+                });
+            }
+
+            function scrollToBottom() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+        });
+
+        // Global function for suggestion buttons
+        window.selectSuggestion = function(suggestion) {
+            const messageInput = document.getElementById('messageInput');
+            const chatForm = document.getElementById('chatForm');
+            messageInput.value = suggestion;
+            chatForm.dispatchEvent(new Event('submit'));
+        };
+    </script>
+</body>
+</html>

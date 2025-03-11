@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HealthAssist - Your AI-powered medical assistant for instant health information and guidance">
+    <meta name="keywords" content="medical chatbot, health assistant, symptom checker, medical guidance, AI healthcare">
+    <meta name="author" content="HealthAssist">
+    <title>HealthAssist - Medical Chatbot Service</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJtMTkgMTQtMiAyaC00bC0yLTJNOCAxOGgtMmE0IDQgMCAwIDEtNC00di00YTQgNCAwIDAgMSA0LTRoMmE0IDQgMCAwIDEgNCA0djVhMyAzIDAgMCAxLTMgM3oiPjwvcGF0aD48cGF0aCBkPSJNMTYgMThoMmE0IDQgMCAwIDAgNC00di00YTQgNCAwIDAgMC00LTRoLTJhNCA0IDAgMCAwLTQgNHY1YTMgMyAwIDAgMCAzIDN6Ij48L3BhdGg+PC9zdmc+" alt="HealthAssist Logo">
+                HealthAssist
+            </div>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <% if (locals.username) { %>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/chat">Chat</a></li>
+                    <li><a href="/logout">Logout (<%= username %>)</a></li>
+                <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Your Personal Medical Assistant</h1>
+            <p>Get instant health information, symptom checking, and medical guidance from our AI-powered chatbot. Available 24/7 to answer your health questions.</p>
+            <% if (locals.username) { %>
+                <a href="/chat" class="cta-button">Start Chat</a>
+            <% } else { %>
+                <a href="#" class="cta-button" id="heroTryChatbotBtn">Try Chatbot</a>
+            <% } %>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" id="features">
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Symptom Checker</h3>
+                <p>Describe your symptoms and get information about possible conditions. Our AI analyzes your symptoms and provides guidance based on medical knowledge.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Medical Information</h3>
+                <p>Get reliable information about medical conditions, treatments, medications, and preventive care from our extensive healthcare database.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🕒</div>
+                <h3>24/7 Availability</h3>
+                <p>Access healthcare information anytime, anywhere. Our chatbot is always available to answer your questions, even outside regular medical office hours.</p>
+            </div>
+        </section>
+
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <h2>About HealthAssist</h2>
+                <p>HealthAssist was developed by a team of healthcare professionals and AI experts to provide accessible medical information to everyone. Our mission is to empower individuals with reliable health information and guidance.</p>
+                <p>While our chatbot is not a replacement for professional medical advice, it serves as a valuable first resource to help you understand health concerns and make informed decisions about seeking care.</p>
+                <% if (locals.username) { %>
+                    <a href="/chat" class="cta-button">Start Chat</a>
+                <% } else { %>
+                    <a href="#" class="cta-button" id="tryChatbotBtn">Try Our Chatbot</a>
+                <% } %>
+            </div>
+            <div class="about-image">
+                <img src="/images/doctor-patient.jpg" alt="Doctor with patient">
+            </div>
+        </section>
+                <!-- Testimonials Section -->
+                <section class="testimonials-section" id="testimonials">
+                    <h2>What Our Users Say</h2>
+                    <div class="testimonials-container">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                "HealthAssist helped me understand my symptoms before my doctor's appointment. I was better prepared to discuss my condition, which made the visit much more productive."
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/images/testimonials/sarah.jpg" alt="Sarah Johnson">
+                                <div class="author-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>HealthAssist User</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                "As someone living in a rural area, access to medical information isn't always easy. HealthAssist has been invaluable for getting quick answers to my health questions."
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/images/testimonials/michael.jpg" alt="Michael Chen">
+                                <div class="author-info">
+                                    <h4>Michael Chen</h4>
+                                    <p>HealthAssist User</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                "I appreciate how HealthAssist explains medical concepts in simple terms. It's like having a healthcare professional available whenever I need clarification."
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/images/testimonials/jessica.jpg" alt="Jessica Williams">
+                                <div class="author-info">
+                                    <h4>Jessica Williams</h4>
+                                    <p>HealthAssist User</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        
+            <!-- Chatbot Container for Logged-in Users -->
+            <% if (locals.username) { %>
+            <div class="chatbot-container" id="chatbotContainer">
+                <div class="chatbot-header">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJtMTkgMTQtMiAyaC00bC0yLTJNOCAxOGgtMmE0IDQgMCAwIDEtNC00di00YTQgNCAwIDAgMSA0LTRoMmE0IDQgMCAwIDEgNCA0djVhMyAzIDAgMCAxLTMgM3oiPjwvcGF0aD48cGF0aCBkPSJNMTYgMThoMmE0IDQgMCAwIDAgNC00di00YTQgNCAwIDAgMC00LTRoLTJhNCA0IDAgMCAwLTQgNHY1YTMgMyAwIDAgMCAzIDN6Ij48L3BhdGg+PC9zdmc+" alt="HealthAssist Bot">
+                    <h3>Chat with HealthAssist</h3>
+                    <div class="timestamp"><%= new Date('2025-03-03T15:11:45Z').toLocaleString() %></div>
+                </div>
+                <div class="chatbot-messages" id="chatMessages"></div>
+                <form class="chatbot-input" id="chatForm">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="text" id="messageInput" placeholder="Type your message..." required>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+            <% } %>
+        
+            <!-- Login Modal -->
+            <div id="loginModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeBtn">&times;</span>
+                    <h2>Try Our Demo</h2>
+                    <p>You're currently using our demo version. For full access to all features:</p>
+                    <div class="modal-buttons">
+                        <a href="/login" class="modal-button login-btn">Login</a>
+                        <a href="/signup" class="modal-button signup-btn">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-container">
+                    <div class="footer-col">
+                        <h3>HealthAssist</h3>
+                        <p>Your personal medical assistant powered by AI to provide health information and guidance.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#features">Symptom Checker</a></li>
+                            <li><a href="#features">Medical Information</a></li>
+                            <li><a href="#features">Healthcare FAQs</a></li>
+                            <li><a href="#features">Wellness Tips</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li>Email: info@healthassist.com</li>
+                            <li>Phone: +1 (555) 123-4567</li>
+                            <li>Address: 123 Medical Plaza, Suite 456, Health City, HC 12345</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 HealthAssist. All rights reserved. | Current User: <%= locals.username || 'Guest' %> | Last Updated: <%= new Date('2025-03-03T15:11:45Z').toLocaleString() %>
+                </div>
+            </footer>
+                <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Constants
+            const CURRENT_DATE = new Date('2025-03-03T15:12:54Z');
+            const CURRENT_USER = 'Ajith-Kumar11';
+            const tryChatbotBtn = document.getElementById('tryChatbotBtn');
+            const heroTryChatbotBtn = document.getElementById('heroTryChatbotBtn');
+            const chatMessages = document.getElementById('chatMessages');
+            const chatForm = document.getElementById('chatForm');
+            const messageInput = document.getElementById('messageInput');
+
+
+            // Live Chat Handlers
+            function addLiveUserMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message user';
+                messageDiv.innerHTML = `
+                    <div class="message-content">${escapeHtml(message)}</div>
+                    <div class="message-time">${formatTime(CURRENT_DATE)}</div>
+                `;
+                chatMessages?.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            function addLiveBotMessage(message, suggestions = []) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot';
+                
+                let suggestionsHtml = '';
+                if (suggestions.length > 0) {
+                    suggestionsHtml = `
+                        <div class="suggestions">
+                            ${suggestions.map(suggestion => `
+                                <button class="suggestion-btn" onclick="selectSuggestion('${escapeHtml(suggestion)}')">${escapeHtml(suggestion)}</button>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                messageDiv.innerHTML = `
+                    <div class="message-content">${escapeHtml(message)}</div>
+                    <div class="message-time">${formatTime(CURRENT_DATE)}</div>
+                    ${suggestionsHtml}
+                `;
+                
+                chatMessages?.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            // Utility Functions
+            function formatTime(date) {
+                return date.toLocaleTimeString('en-US', { 
+                    hour: '2-digit', 
+                    minute: '2-digit'
+                });
+            }
+
+            function scrollToBottom() {
+                if (chatMessages) {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+                if (demoChatMessages) {
+                    demoChatMessages.scrollTop = demoChatMessages.scrollHeight;
+                }
+            }
+
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            // Event Listeners
+            tryChatbotBtn?.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('demoChatbot').scrollIntoView({ behavior: 'smooth' });
+                initDemoChat();
+            });
+
+            heroTryChatbotBtn?.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('demoChatbot').scrollIntoView({ behavior: 'smooth' });
+                initDemoChat();
+            });
+
+            chatForm?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const message = messageInput.value.trim();
+                if (!message) return;
+
+                try {
+                    addLiveUserMessage(message);
+                    messageInput.value = '';
+
+                    const csrfToken = document.querySelector('input[name="_csrf"]').value;
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'CSRF-Token': csrfToken
+                        },
+                        body: JSON.stringify({ message })
+                    });
+
+                    if (!response.ok) throw new Error('Network response was not ok');
+
+                    const data = await response.json();
+                    addLiveBotMessage(data.reply, data.suggestions || []);
+
+                } catch (error) {
+                    console.error('Chat error:', error);
+                    addLiveBotMessage(
+                        "I'm sorry, but I encountered an error. Please try again.",
+                        ['Check Symptoms', 'Book Appointment', 'Medical Information']
+                    );
+                }
+            });
+
+            // Global Functions
+            window.handleDemoSuggestion = function(suggestion) {
+                addDemoUserMessage(suggestion);
+                setTimeout(() => {
+                    if (suggestion === 'Check Symptoms') {
+                        addDemoBotMessage(
+                            "What symptoms are you experiencing?",
+                            ['Headache', 'Fever', 'Cough', 'Stomach Pain']
+                        );
+                    } else if (['Headache', 'Fever', 'Cough', 'Stomach Pain'].includes(suggestion)) {
+                        addDemoBotMessage(
+                            `How long have you been experiencing ${suggestion.toLowerCase()}?`,
+                            ['Few hours', '1-2 days', 'Several days', 'More than a week']
+                        );
+                    } else {
+                        addDemoBotMessage(
+                            "This is a demo version. Please sign up or login to access all features.",
+                            ['Sign Up', 'Login', 'Learn More']
+                        );
+                    }
+                }, 1000);
+            };
+
+            window.selectSuggestion = function(suggestion) {
+                if (messageInput) {
+                    messageInput.value = suggestion;
+                    chatForm.dispatchEvent(new Event('submit'));
+                }
+            };
+
+            // Initialize chat
+            initDemoChat();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HealthAssist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 6px;
+            background: linear-gradient(90deg, #00b4d8, #0077b6, #00b4d8);
+            animation: loading 2s linear infinite;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .logo h1 {
+            color: #333;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            transition: 0.3s;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 40px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+
+        .form-input:focus {
+            border-color: #0077b6;
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+        }
+
+        .form-input:focus + i {
+            color: #0077b6;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #0077b6;
+        }
+
+        .forgot-password {
+            color: #0077b6;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .forgot-password:hover {
+            color: #00b4d8;
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-btn:hover {
+            background: #00b4d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 119, 182, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #666;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider span {
+            padding: 0 15px;
+            font-size: 14px;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ddd;
+            background: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .social-btn i {
+            font-size: 20px;
+        }
+
+        .social-btn.google i { color: #DB4437; }
+        .social-btn.facebook i { color: #4267B2; }
+        .social-btn.apple i { color: #000000; }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .register-link a:hover {
+            color: #00b4d8;
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fff5f5;
+            color: #dc3545;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ffcdd2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-message i {
+            font-size: 18px;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .logo h1 {
+                font-size: 20px;
+            }
+
+            .social-login {
+                gap: 10px;
+            }
+
+            .social-btn {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDc3YjYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJtMTkgMTQtMiAyaC00bC0yLTJNOCAxOGgtMmE0IDQgMCAwIDEtNC00di00YTQgNCAwIDAgMSA0LTRoMmE0IDQgMCAwIDEgNCA0djVhMyAzIDAgMCAxLTMgM3oiPjwvcGF0aD48cGF0aCBkPSJNMTYgMThoMmE0IDQgMCAwIDAgNC00di00YTQgNCAwIDAgMC00LTRoLTJhNCA0IDAgMCAwLTQgNHY1YTMgMyAwIDAgMCAzIDN6Ij48L3BhdGg+PC9zdmc+" alt="HealthAssist Logo">
+            <h1>Welcome to HealthAssist</h1>
+        </div>
+
+        <% if (locals.error) { %>
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+        <div class="social-login">
+            <button class="social-btn google">
+                <i class="fab fa-google"></i>
+            </button>
+            <button class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="social-btn apple">
+                <i class="fab fa-apple"></i>
+            </button>
+        </div>
+
+        <div class="register-link">
+            Don't have an account? <a href="/signup">Register now</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading state to button when form is submitted
+            const form = document.querySelector('form');
+            const loginBtn = document.querySelector('.login-btn');
+            
+            form.addEventListener('submit', function() {
+                loginBtn.style.opacity = '0.7';
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            });
+
+            // Password visibility toggle
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.createElement('i');
+            togglePassword.className = 'fas fa-eye';
+            togglePassword.style.cssText = `
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                color: #666;
+            `;
+            passwordInput.parentElement.appendChild(togglePassword);
+
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.className = `fas fa-eye${type === 'password' ? '' : '-slash'}`;
+            });
+        });
+    </script>
+</body>
+</html>
