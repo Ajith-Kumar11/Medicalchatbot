@@ -1,0 +1,126 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - diet_plan
+  - provide_age
+  - provide_gender
+  - provide_weight
+  - provide_height
+  - provide_activity_level
+  - provide_goal
+  - diet_plan_request
+  - provide_activity
+
+entities:
+  - age
+  - gender
+  - weight
+  - height
+  - activity_level
+  - goal
+
+slots:
+  age:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: age
+
+  gender:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: gender
+
+  weight:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: weight
+      - type: from_text
+
+  height:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: height
+
+  activity_level:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: activity_level
+
+  goal:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: goal
+
+responses:
+  utter_ask_age:
+    - text: "Could you please tell me your age?"
+  utter_goodbye:
+    - text: "Goodbye! Take care and stay healthy."
+  utter_greet:
+    - text: "Hey! I’m your medical assistant. How can I help you today?"
+  utter_happy:
+    - text: "Great to hear that!"
+
+  utter_cheer_up:
+    - text: "Here’s something to cheer you up! 😊"
+
+  utter_acknowledge:
+    - text: "Thanks for the info! Let me prepare your personalized diet plan."
+
+  utter_iamabot:
+    - text: "I am your medical assistant bot!"
+
+  utter_thanks:
+    - text: "Thank you! Take care."
+
+  utter_diet_plan:
+    - text: "Here's your personalized diet plan."
+    
+  utter_ask_gender:
+    - text: "What is your gender?"
+
+  utter_ask_weight:
+    - text: "Please share your weight in kilograms."
+
+  utter_ask_height:
+    - text: "What is your height in centimeters?"
+
+  utter_ask_activity_level:
+    - text: "How active are you on a daily basis? (e.g., sedentary, moderate, active)"
+
+  utter_ask_goal:
+    - text: "What is your goal? (Lose weight, Maintain, or Gain weight)"
+
+actions:
+  - action_provide_diet
+  - action_ask_details
+  - action_store_age
+  - action_store_gender
+  - action_store_weight
+  - action_store_height
+  - action_store_activity
+  - action_store_goal
+  - action_create_diet_plan
+
+forms:
+  diet_form:
+    required_slots:
+      - age
+      - gender
+      - weight
+      - height
+      - activity_level
+      - goal
