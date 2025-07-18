@@ -1,0 +1,446 @@
+version: "3.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - heyy
+    - heya
+    - halo
+    - hola
+    - hello
+    - helloo
+    - hi
+    - hii
+    - hello there
+    - hi there
+    - good morning
+    - good evening
+    - moin
+    - yo
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - good day
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you [later](bye)
+    - good night
+    - [bye](bye)
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye [bye](bye)
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - yes I want to
+    - yes I would like to
+    - yes please
+    - please yes
+    - yeah
+    - yep
+    - yeh
+    - I think so
+    - yes I think so
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - alright
+    - okay
+    - ok
+    - o.k
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - please no
+    - nah
+    - naah
+    - no please
+    - noo
+    - no I don't want to
+    - n
+    - no I don't think so
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - [perfect](good)
+    - [great](good)
+    - [amazing](good)
+    - feeling like a king
+    - [good](good)
+    - [fine](good)
+    - [I'm fine](good)
+    - [wonderful](good)
+    - I [am feeling very good](good)
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+    - [feeling better](good)
+    - I have recovered
+    - [I'm good](good)
+    - [extraordinary](good)
+    - [i am fine](good)
+    - I'm okay
+    - am okay
+    - I am okay
+    - [good](good)
+- intent: mood_bad
+  examples: |
+    - I am [sick](bad)
+    - [not feeling well](bad)
+    - [I am not good](bad)
+    - feeling nauseous
+    - feeling feverish
+    - [I'm very sick](bad)
+    - [I'm dying](bad)
+    - [dying](bad)
+    - [I'm dying right now](bad)
+    - [not](bad) so good
+    - [sick](bad)
+    - I'm [ill](bad)
+    - [I am ill](bad)
+    - [am ill today](bad)
+    - I [don't](bad) feel very well
+    - [I don't feel well](bad)
+    - [don't feel well](bad)
+    - I [dont](bad) feel very well
+    - [I dont feel well](bad)
+    - [dont feel well](bad)
+    - not good
+    - [not fine](bad)
+    - not very good
+    - I'm [unwell](bad)
+    - [unwell](bad)
+    - [am unwell today](bad)
+    - [bad](bad)
+    - [very bad](bad)
+    - [very bad today](bad)
+    - [not good](bad)
+    - [I'm sick today](bad)
+    - help me
+    - help
+- intent: thanks
+  examples: |
+    - thanks
+    - thank you
+    - that's helpful
+    - that is helpful
+    - that was helpful
+    - that was really helpful
+    - that was very helpful
+    - awesome, thanks
+    - thanks for helping me
+    - thanks for your help
+    - thanks for today
+    - thank you for today
+    - thanks for the help
+    - thank you very much
+    - grateful
+    - appreciate your help
+    - thank you for the information
+    - thank you for the info
+    - thanks for the information
+    - thanks for the info
+    - wow, thanks
+    - wow, thank you
+    - you are the best
+    - gracias
+- intent: return_main_menu
+  examples: |
+    - return
+    - please return
+    - return to main menu
+    - return to menu
+    - return to the menu
+    - return to the main
+    - return to main
+    - return to the main menu
+    - I would like to return to main menu
+    - I want to return to main menu
+    - I will like to return to main menu
+    - continue
+    - main menu
+    - menu
+    - back
+    - go back
+- intent: quit_bot
+  examples: |
+    - quit
+    - please quit
+    - quit please
+    - I would like to quit
+    - I will like to quit
+    - I want to quit
+    - finish
+    - end
+    - close
+    - i am done
+    - that will be all
+- intent: locate
+  examples: |
+    - Get a location
+    - get a location
+    - Get location
+    - get location
+    - I need a location
+    - I need to locate a place
+    - locate
+    - locate a place
+    - I need location
+    - I need locations
+    - I want a location
+    - I want to locate
+    - I want to locate a place
+- intent: gen_terms
+  examples: |
+    - Get definitions to medical terms
+    - get definitions to medical terms
+    - general terms
+    - [medical terms](get_definition)
+    - get definitions
+    - [definitions](get_definition)
+    - [definition](get_definition)
+    - I need definitions
+    - I want definitions
+- intent: diseases_info
+  examples: |
+    - Get information on diseases
+    - get information on diseases
+    - get information
+    - get information about disease
+    - I want [information](disease_inform)
+    - I want information on diseases
+    - [information](disease_inform)
+    - I need information
+    - I need information on diseases
+    - info on diseases
+- intent: diseases
+  examples: |
+    - [_malaria](disease)
+    - i want to know about [_malaria](disease)
+    - i am suffering from [_malaria](disease)
+    - symptom of [_malaria](disease)
+    - about [_malaria](disease)
+    - [_asthma](disease)
+    - [_covid 19](disease)
+    - [_polio](disease)
+    - [_meningitis](disease)
+    - [_diabetes][{"entity": "disease"}, {"entity": "disease"}]
+- intent: terms
+  examples: |
+    - I would like to learn more about [@systolic](term_name)
+    - about [@systolic](term_name)
+    - [@systolic](term_name)
+    - [@benign](term_name)
+    - [@edema](term_name)
+    - [@chronic](term_name)
+    - [@aneurysm](term_name)
+    - [@grhtbfg](term_name)
+    - [@chronic][{"entity": "term_name"}, {"entity": "term_name"}]
+    - [@djhby](term_name)
+    - [@tumor](term_name)
+    - [@abrasion](term_name)
+    - [@bcuhjd][{"entity": "term_name"}, {"entity": "term_name"}]
+    - [@thrombosis][{"entity": "term_name"}, {"entity": "term_name"}]
+    - [@aneurysm][{"entity": "term_name"}, {"entity": "term_name"}]
+    - [@lesion][{"entity": "term_name"}, {"entity": "term_name"}]
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: query_knowledge_base
+  examples: |
+    - locate [hospitals]{"entity": "object_type", "value": "hospital"}
+    - find [hospitals]{"entity": "object_type", "value": "hospital"}
+    - [hospitals]{"entity": "object_type", "value": "hospital"}
+    - locate [pharmacies]{"entity": "object_type", "value": "pharmacy"}
+    - find [pharmacies]{"entity": "object_type", "value": "pharmacy"}
+    - [pharmacies]{"entity": "object_type", "value": "pharmacy"}
+    - locate [labs]{"entity": "object_type", "value": "lab"}
+    - find [labs]{"entity": "object_type", "value": "lab"}
+    - [labs]{"entity": "object_type", "value": "lab"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [first]{"entity": "mention", "value": "1"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [second]{"entity": "mention", "value": "2"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [third]{"entity": "mention", "value": "3"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [fourth]{"entity": "mention", "value": "4"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [fifth]{"entity": "mention", "value": "5"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [sixth]{"entity": "mention", "value": "6"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [seventh]]{"entity": "mention", "value": "7"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [eighth]{"entity": "mention", "value": "8"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [ninth]{"entity": "mention", "value": "9"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [tenth]{"entity": "mention", "value": "10"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [last]{"entity": "mention", "value": "LAST"}
+    - [directions]{"entity": "attribute", "value": "map_location"} to [any]{"entity": "mention", "value": "ANY"}
+- intent: drug_name
+  examples: |
+    - [&paracetamol](name_of_drug)
+    - about [&paracetamol](name_of_drug)
+    - I would like to know about [&paracetamol](name_of_drug)
+    - adverse reaction of [&paracetamol](name_of_drug)
+    - adverse effects of [&paracetamol](name_of_drug)
+    - [&chloroquine](name_of_drug)
+    - [&clonazepam](name_of_drug)
+    - [&thiamine](name_of_drug)
+    - [&aspirin](name_of_drug)
+    - [&sodium valproate](name_of_drug)
+    - [&tadalafil][{"entity": "name_of_drug"}, {"entity": "name_of_drug"}]
+- synonym: hospital
+  examples: |
+    - hospitals
+    - Hospitals
+    - a hospital
+- synonym: pharmacy
+  examples: |
+    - pharmacies
+    - Pharmacies
+    - a pharmacy
+- synonym: lab
+  examples: |
+    - labs
+    - Labs
+    - Laboratories
+    - laboratories
+    - a lab
+    - a laboratory
+- synonym: map_location
+  examples: |
+    - directions
+    - direction
+- synonym: '1'
+  examples: |
+    - first
+    - the first
+    - the first one
+    - number one
+    - one
+    - 1st
+- synonym: '2'
+  examples: |
+    - second
+    - the second one
+    - the second
+    - number two
+    - number 2
+    - two
+    - 2nd
+- synonym: '3'
+  examples: |
+    - third
+    - the third one
+    - the third
+    - number three
+    - number 3
+    - three
+    - 3rd
+- synonym: '4'
+  examples: |
+    - fourth
+    - the fourth one
+    - the fourth
+    - number four
+    - number 4
+    - four
+    - 4th
+- synonym: '5'
+  examples: |
+    - fifth
+    - the fifth one
+    - the fifth
+    - number five
+    - number 5
+    - five
+    - 5th
+- synonym: '6'
+  examples: |
+    - sixth
+    - the sixth one
+    - the sixth
+    - number six
+    - number 6
+    - six
+    - 6th
+- synonym: '7'
+  examples: |
+    - seventh
+    - the seventh one
+    - the seventh
+    - number seven
+    - number 7
+    - seven
+    - 7th
+- synonym: '8'
+  examples: |
+    - eighth
+    - the eighth one
+    - the eighth
+    - number eight
+    - number 8
+    - eight
+    - 8th
+- synonym: '9'
+  examples: |
+    - ninth
+    - the ninth one
+    - the ninth
+    - number nine
+    - number 9
+    - nine
+    - 9th
+- synonym: '10'
+  examples: |
+    - tenth
+    - the tenth one
+    - the tenth
+    - number ten
+    - number 10
+    - ten
+    - 10th
+- synonym: LAST
+  examples: |
+    - last
+    - the last one
+    - the last
+- synonym: ANY
+  examples: |
+    - any
+    - any of them
+- regex: bad
+  examples: |
+    - .*bad.*
+    - .*don't.*
+    - .*dont.*
+    - .*dying.*
+    - .*ill.*
+    - .*sick.*
+    - .*unwell.*
+    - .+\snot\s.+
+    - not\s.+
+- regex: disease
+  examples: |
+    - _.+
+- regex: name_of_drug
+  examples: |
+    - &.+
+- regex: term_name
+  examples: |
+    - @.+

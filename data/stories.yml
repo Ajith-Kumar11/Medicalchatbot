@@ -1,0 +1,539 @@
+version: "3.0"
+
+stories:
+
+- story: good mood 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+    entities:
+    - good: good
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - checkpoint: quest_asked
+
+- story: bad mood 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_bad
+    entities:
+    - bad: bad
+  - action: utter_mood_bad
+  - action: utter_ask_quest
+  - checkpoint: quest_asked
+
+- story: get term definition 1
+  steps:
+  - checkpoint: quest_asked
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+  - action: action_term_api
+
+- story: interactive_story_term_return 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@benign'
+  - action: action_term_api
+  - intent: return_main_menu
+  - action: utter_ask_quest
+
+- story: interactive_story_term_quit
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@edema'
+  - action: action_term_api
+  - intent: quit_bot
+  - action: utter_alright
+
+- story: interactive_story_term_return 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@chronic'
+  - action: action_term_api
+  - intent: return_main_menu
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@aneurysm'
+  - action: action_term_api
+  - intent: quit_bot
+  - action: utter_alright
+
+- story: interactive_story_wrong_term
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@djhby'
+  - action: action_term_api
+  - intent: return_main_menu
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@tumor'
+  - action: action_term_api
+
+- story: interactive_story_term_keep_returning
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@abrasion'
+  - action: action_term_api
+  - intent: return_main_menu
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@bcuhjd'
+    - term_name: '@bcuhjd'
+  - action: action_term_api
+  - intent: return_main_menu
+  - action: utter_ask_quest
+  - intent: gen_terms
+  - action: utter_term
+  - intent: terms
+    entities:
+    - term_name: '@thrombosis'
+    - term_name: '@thrombosis'
+  - action: action_term_api
+  - intent: quit_bot
+  - action: utter_alright
+
+- story: interactive_story_disease_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: diseases_info
+  - action: utter_what_disease
+  - intent: diseases
+    entities:
+    - disease: _polio
+  - action: action_disease_checker
+  - intent: affirm
+  - action: utter_what_drug
+  - intent: drug_name
+    entities:
+    - name_of_drug: '&clonazepam'
+  - action: action_adverse_drug
+  - intent: return_main_menu
+  - action: utter_ask_quest
+
+- story: interactive_story_disease_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: diseases_info
+  - action: utter_what_disease
+  - intent: diseases
+    entities:
+    - disease: _meningitis
+  - action: action_disease_checker
+  - intent: affirm
+  - action: utter_what_drug
+  - intent: drug_name
+    entities:
+    - name_of_drug: '&tadalafil'
+    - name_of_drug: '&tadalafil'
+  - action: action_adverse_drug
+  - intent: return_main_menu
+  - action: utter_ask_quest
+
+- story: interactive_story_disease_3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: diseases_info
+  - action: utter_what_disease
+  - intent: diseases
+    entities:
+    - disease: _diabetes
+    - disease: _diabetes
+  - action: action_disease_checker
+  - intent: deny
+  - action: utter_anything_next
+
+- story: interactive_story_locate_pharm 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+    entities:
+    - good: good
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: locate
+  - action: utter_locate
+  - intent: query_knowledge_base
+    entities:
+    - object_type: pharmacy
+  - slot_was_set:
+    - object_type: pharmacy
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: pharmacy
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - knowledge_base_last_object: null
+  - slot_was_set:
+    - knowledge_base_last_object_type: pharmacy
+  - slot_was_set:
+    - knowledge_base_listed_objects:
+      - 4
+      - 2
+      - 1
+      - 5
+      - 3
+  - intent: query_knowledge_base
+    entities:
+    - attribute: map_location
+    - mention: '1'
+  - slot_was_set:
+    - mention: '1'
+  - slot_was_set:
+    - attribute: map_location
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: pharmacy
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - knowledge_base_last_object: 4
+  - slot_was_set:
+    - knowledge_base_last_object_type: pharmacy
+  - intent: thanks
+  - action: utter_thanks
+
+- story: interactive_story_locate_pharm 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_bad
+    entities:
+    - bad: bad
+  - action: utter_mood_bad
+  - action: utter_ask_quest
+  - intent: locate
+  - action: utter_locate
+  - intent: query_knowledge_base
+    entities:
+    - object_type: pharmacy
+  - slot_was_set:
+    - object_type: pharmacy
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: pharmacy
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - knowledge_base_last_object: null
+  - slot_was_set:
+    - knowledge_base_last_object_type: pharmacy
+  - slot_was_set:
+    - knowledge_base_listed_objects:
+      - 4
+      - 2
+      - 1
+      - 5
+      - 3
+  - intent: query_knowledge_base
+    entities:
+    - attribute: map_location
+    - mention: '1'
+  - slot_was_set:
+    - mention: '1'
+  - slot_was_set:
+    - attribute: map_location
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: pharmacy
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - knowledge_base_last_object: 4
+  - slot_was_set:
+    - knowledge_base_last_object_type: pharmacy
+  - intent: thanks
+  - action: utter_thanks
+
+- story: interactive_story_locate_hosp_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+    entities:
+    - good: good
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: locate
+  - action: utter_locate
+  - intent: query_knowledge_base
+    entities:
+    - object_type: hospital
+  - slot_was_set:
+    - object_type: hospital
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: hospital
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - knowledge_base_last_object: null
+  - slot_was_set:
+    - knowledge_base_last_object_type: hospital
+  - slot_was_set:
+    - knowledge_base_listed_objects:
+      - 1
+      - 0
+      - 2
+      - 4
+      - 6
+  - intent: query_knowledge_base
+    entities:
+    - attribute: map_location
+    - mention: '1'
+  - slot_was_set:
+    - mention: '1'
+  - slot_was_set:
+    - attribute: map_location
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: hospital
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - knowledge_base_last_object: 1
+  - slot_was_set:
+    - knowledge_base_last_object_type: hospital
+  - intent: thanks
+  - action: utter_thanks
+
+- story: interactive_story_locate_hosp_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_bad
+    entities:
+    - bad: bad
+  - action: utter_mood_bad
+  - action: utter_ask_quest
+  - intent: locate
+  - action: utter_locate
+  - intent: query_knowledge_base
+    entities:
+    - object_type: hospital
+  - slot_was_set:
+    - object_type: hospital
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: hospital
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - knowledge_base_last_object: null
+  - slot_was_set:
+    - knowledge_base_last_object_type: hospital
+  - slot_was_set:
+    - knowledge_base_listed_objects:
+      - 1
+      - 0
+      - 2
+      - 4
+      - 6
+  - intent: query_knowledge_base
+    entities:
+    - attribute: map_location
+    - mention: '1'
+  - slot_was_set:
+    - mention: '1'
+  - slot_was_set:
+    - attribute: map_location
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: hospital
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - knowledge_base_last_object: 1
+  - slot_was_set:
+    - knowledge_base_last_object_type: hospital
+  - intent: thanks
+  - action: utter_thanks
+
+- story: interactive_story_locate_lab_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+    entities:
+    - good: good
+  - action: utter_mood_great
+  - action: utter_ask_quest
+  - intent: locate
+  - action: utter_locate
+  - intent: query_knowledge_base
+    entities:
+    - object_type: lab
+  - slot_was_set:
+    - object_type: lab
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: lab
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - knowledge_base_last_object: null
+  - slot_was_set:
+    - knowledge_base_last_object_type: lab
+  - slot_was_set:
+    - knowledge_base_listed_objects:
+      - 4
+      - 0
+      - 1
+      - 3
+      - 2
+  - intent: query_knowledge_base
+    entities:
+    - attribute: map_location
+    - mention: ANY
+  - slot_was_set:
+    - mention: ANY
+  - slot_was_set:
+    - attribute: map_location
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: lab
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - knowledge_base_last_object: 4
+  - slot_was_set:
+    - knowledge_base_last_object_type: lab
+
+- story: interactive_story_locate_lab_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_bad
+    entities:
+    - bad: bad
+  - action: utter_mood_bad
+  - action: utter_ask_quest
+  - intent: locate
+  - action: utter_locate
+  - intent: query_knowledge_base
+    entities:
+    - object_type: lab
+  - slot_was_set:
+    - object_type: lab
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: lab
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - knowledge_base_last_object: null
+  - slot_was_set:
+    - knowledge_base_last_object_type: lab
+  - slot_was_set:
+    - knowledge_base_listed_objects:
+      - 4
+      - 0
+      - 1
+      - 3
+      - 2
+  - intent: query_knowledge_base
+    entities:
+    - attribute: map_location
+    - mention: ANY
+  - slot_was_set:
+    - mention: ANY
+  - slot_was_set:
+    - attribute: map_location
+  - action: action_query_knowledge_base
+  - slot_was_set:
+    - object_type: lab
+  - slot_was_set:
+    - attribute: null
+  - slot_was_set:
+    - mention: null
+  - slot_was_set:
+    - knowledge_base_last_object: 4
+  - slot_was_set:
+    - knowledge_base_last_object_type: lab

@@ -1,0 +1,28 @@
+{
+  "lookup": {
+    "eJyLrq6NBQAEOAGx": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohNTe1KD01L7kyPiM1p6C2NhYA8sMfNQ==": "utter_emergency_help",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohNTe1KD01L7kyPiM1p6CWgGGlJSWpRfFoegiaGQsAgX0/pw==": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohKT8/Oz6xoCAfKJALFKmtjQUAMxggJw==": "appointment_form",
+    "eJyFjVEKgCAQRK/iATqBV4lYLDaQ1F3U/BHv3kpCH0H9zQxvZubaJlU5YgGzZUtBq3oLCMajVsM4mzIGYc+EURgbxGatVqIDDDNJ4CVpfa53CoIjYkHHzsPATtEL9/X6pn+PlwtfO07j": "action_book_appointment",
+    "eJy9j1EKgCAQRK/iATqBV4lYLDeQ0l3U/BHv3kZBQdBnfzvD2xmmr61TlSMWMFN2FLSq5wHBeNTqEqtLGYOwW8IojAsis1Yj0QKGmcTw4rQj7vgpCCsRC3rl3AzMFL1wX61v+qfi77kcqTiLz2KwJmNrww4WQn+U": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fklmcmlicGp+Zl5ZfWxsLADFWH/U=": "action_search_disease_info",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fklmcmlicGp+Zl5ZfS5xxQA1FyRmoOokwOxYACgFDaA==": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fkZqYU5IRX1iaWgxSW1sbCwCUgSFZ": "action_provide_health_info",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fkZqYU5IRX1iaWgxSW0uciQVF+WWZKakw3Zl5aflEGh8LAMTcRks=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohLTMvJT41N7UoPTUvuTK+KD8/t7Y2FgCT3SFJ": "action_find_emergency_room",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohLTMvJT41N7UoPTUvuTK+KD8/t5Y4E7HpJM74WAC8Z0Yt": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohOTEvOTUnPrGgIB8olAsUq62NBQByayDi": "action_reset_slots",
+    "eJyNjNEJwCAMBVfJAJ3AVUoJQfIhaJQk7Y+4ewPtAP69O453znXAHMoPUvbSJcH8Bgo1TvBDLeYs0d7GGk2RQE+QSTJXpDF6qBZu7R0qGzta7W57r9cLDy5COw==": "utter_cancel_appointment",
+    "eJytjLEJwDAMBFfRAJnAq4QgjFFhsGUjyWmMd48gKVOkSPf/3N8+1wazC50Yk+XGAeYdkGOlAE8pWY3Y2aEkzmT2agFS5EQFY+/Np+rb+iYUUjLU0kz/sA4zEnz5fXIfF0O4Zgc=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohLTMvJT4lP7kkv6i2NhYAlmcd+Q==": "action_find_doctor",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohLTMvJT4lP7kkv6iWOJOQdeA3LhYAgPg8PQ==": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohOSM1OTs+saAgHyiSCxSqrY0FAFHdIHo=": "action_check_appointment",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohOSM1OTs+saAgHyiSCxSqJc48TH3EGB0LABkuQ8A=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fm5qSmZwIVpaZl5ZfWxsLAJNWITQ=": "action_search_medication_info",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fm5qSmZwIVpaZl5ZfS5yJxamJRckZGJqJsyEWAIaaRyU=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohOSM1OTu+uDK3oCQ/t7i2NhYA8zsfVw==": "symptom_assessment_form",
+    "eJyFjtEJgDAMRFfpAE7QVURCKRGLTVOaKkjp7kb0V/3LwXt3GVsfTMsFd3C+Bk7WtPuA5AiteUIMUjEpuwkWZULSWK3xC/oV5KBcmaRfZZexI0TmrODd8gDgRFCEVIWZCyn+Mf0u/TwxnbWFU2E=": "action_symptom_assessment",
+    "eJy9j9EJwzAMRFfxAJ3Aq4QijKMS08gylmMoxrtXIc5nm7/86eDdnW5q/WFayljB+RI4WtOOA6IjtGaINUjBqOwmmJUJUWWxxi/o3yAfSoVJ+h62OyrCypwUPFIGAE4ERUit8OJMiv+p/m268YmL/SlzDTOe5b0/v7wdg44=": "action_listen"
+  }
+}

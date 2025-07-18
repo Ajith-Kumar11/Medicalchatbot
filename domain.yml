@@ -1,126 +1,191 @@
-version: "3.1"
-
+version: '3.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-  - diet_plan
-  - provide_age
-  - provide_gender
-  - provide_weight
-  - provide_height
-  - provide_activity_level
-  - provide_goal
-  - diet_plan_request
-  - provide_activity
-
+- locate
+- query_knowledge_base
+- mood_great
+- greet
+- thanks
+- gen_terms
+- mood_bad
+- diseases
+- diseases_info
+- deny
+- return_main_menu
+- drug_name
+- affirm
+- quit_bot
+- pharmacy_name
+- locate_pharm
+- terms
+- laboratory_name
+- locate_lab
+- hospital_name
+- locate_hosp
+- goodbye
+- med_history
+- medical_terms
+- bot_challenge
+- nlu_fallback
 entities:
-  - age
-  - gender
-  - weight
-  - height
-  - activity_level
-  - goal
+- attribute
+- bad
+- disease
+- get_definition
+- good
+- help
+- hosp_name
+- lab_name
+- mention
+- name_of_drug
+- pharm_name
+- pharmacies
+- term_name
+- object_type 
+
 
 slots:
-  age:
-    type: text
+  object_type:
+    type: any
+    influence_conversation: false
     mappings:
-      - type: from_entity
-        entity: age
-
-  gender:
-    type: text
+    - type: from_entity
+      entity: object_type
+  mention:
+    type: any
+    influence_conversation: false
     mappings:
-      - type: from_entity
-        entity: gender
-
-  weight:
-    type: text
+    - type: from_entity
+      entity: mention
+  attribute:
+    type: any
+    influence_conversation: false
     mappings:
-      - type: from_entity
-        entity: weight
-      - type: from_text
-
-  height:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: height
-
-  activity_level:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: activity_level
-
-  goal:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: goal
-
+    - type: from_entity
+      entity: attribute
 responses:
-  utter_ask_age:
-    - text: "Could you please tell me your age?"
-  utter_goodbye:
-    - text: "Goodbye! Take care and stay healthy."
   utter_greet:
-    - text: "Hey! I’m your medical assistant. How can I help you today?"
-  utter_happy:
-    - text: "Great to hear that!"
-
-  utter_cheer_up:
-    - text: "Here’s something to cheer you up! 😊"
-
-  utter_acknowledge:
-    - text: "Thanks for the info! Let me prepare your personalized diet plan."
-
-  utter_iamabot:
-    - text: "I am your medical assistant bot!"
-
+  - text: Hey! how are you today?
+  utter_mood_great:
+  - text: That's good to hear!
+  utter_mood_bad:
+  - text: Sorry, I am here to help.
   utter_thanks:
-    - text: "Thank you! Take care."
+  - text: My pleasure
+  utter_ask_quest:
+  - text: |
+      What can I do for you today? Would you like to:
+      Get location
+      Get definitions to medical terms or
+      Get information on diseases
+    channel: twilio
+  - text: What can I do for you today?
+    buttons:
+    - title: Get location
+      payload: /locate
+    - title: Get definitions to medical terms
+      payload: /gen_terms
+    - title: Get information on diseases
+      payload: /diseases_info
+  utter_locate:
+  - text: |
+      Which of these places would you like to locate?
 
-  utter_diet_plan:
-    - text: "Here's your personalized diet plan."
-    
-  utter_ask_gender:
-    - text: "What is your gender?"
-
-  utter_ask_weight:
-    - text: "Please share your weight in kilograms."
-
-  utter_ask_height:
-    - text: "What is your height in centimeters?"
-
-  utter_ask_activity_level:
-    - text: "How active are you on a daily basis? (e.g., sedentary, moderate, active)"
-
-  utter_ask_goal:
-    - text: "What is your goal? (Lose weight, Maintain, or Gain weight)"
-
+      pharmacies, hospitals or labs
+    channel: twilio
+  - text: Which of these places would you like to locate?
+    buttons:
+    - title: Pharmacy
+      payload: /pharmacies
+    - title: Hospital
+      payload: /hospitals
+    - title: Lab
+      payload: /labs
+  utter_goodbye:
+  - text: Bye, have a nice day.
+  utter_alright:
+  - text: Alright.
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_term:
+  - text: What medical term would you like to learn more about? Please add @ before the term. e.g. @systolic
+  utter_no_term:
+  - text: No such medical term. Sorry.
+  utter_definition:
+  - text: '{term} is {definition}'
+  utter_anything_next:
+  - text: Would you like to return to the menu options or quit :(?
+  utter_hospitals:
+  - text: |
+      Find below a list of hospitals and enter the name of the one you'd like to locate based on the attached areas and your location.
+      {hospitals}
+  utter_pharmacies:
+  - text: |
+      Find below a list of pharmacies and enter the name of the one you'd like to locate based on the attached areas and your location.
+      {pharmacies}
+  utter_labs:
+  - text: |
+      Find below a list of labs and enter the name of the one you'd like to locate based on the attached areas and your location.
+      {labs}
+  utter_map_location:
+  - text: |
+      This is a link to the google map location of {place_name}. Hope you get what you're looking for.
+      {map_link}
+  utter_what_disease:
+  - text: What disease would you like to learn more about? Please add _(underscore) before the name of the disease. e.g. _malaria
+  utter_pre_disease:
+  - text: This is some information on {disease}.
+  utter_disease:
+  - text: |
+      {title}: {data}
+  utter_no_disease:
+  - text: Sorry, no such disease.
+  utter_ask_rephrase:
+  - text: Sorry, I'm not sure I understand. Please rephrase it?
+  - text: Could you please rephrase your message? I didn't quite get that.
+  utter_default:
+  - text: Sorry I didn't get that. Can you rephrase?
+  utter_adverse:
+  - text: Would you like to know about the adverse reaction of any drug?
+  utter_what_drug:
+  - text: What drug would you like to know about? Please add & before the name of the disease. e.g. &paracetamol
+  utter_no_drug:
+  - text: Sorry, there is no such drug.
+  utter_adverse_info:
+  - text: |
+      Adverse reaction of {drug}:
+      {data}
 actions:
-  - action_provide_diet
-  - action_ask_details
-  - action_store_age
-  - action_store_gender
-  - action_store_weight
-  - action_store_height
-  - action_store_activity
-  - action_store_goal
-  - action_create_diet_plan
-
-forms:
-  diet_form:
-    required_slots:
-      - age
-      - gender
-      - weight
-      - height
-      - activity_level
-      - goal
+- action_adverse_drug
+- action_disease_checker
+- action_map_location
+- action_places_list
+- action_query_knowledge_base
+- action_term_api
+- utter_adverse
+- utter_adverse_info
+- utter_alright
+- utter_anything_next
+- utter_ask_quest
+- utter_ask_rephrase
+- utter_definition
+- utter_disease
+- utter_goodbye
+- utter_greet
+- utter_hospitals
+- utter_iamabot
+- utter_labs
+- utter_locate
+- utter_mood_bad
+- utter_mood_great
+- utter_no_disease
+- utter_no_drug
+- utter_no_term
+- utter_pharmacies
+- utter_pre_disease
+- utter_term
+- utter_thanks
+- utter_what_disease
+- utter_what_drug
