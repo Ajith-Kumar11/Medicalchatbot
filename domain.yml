@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3.0'
 session_config:
   session_expiration_time: 60
@@ -189,3 +190,541 @@ actions:
 - utter_thanks
 - utter_what_disease
 - utter_what_drug
+=======
+version: "3.1"
+
+intents:
+  # Basic conversation intents
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - thank
+  - bot_challenge
+  
+  # Medical symptom assessment intents
+  - check_symptoms
+  - provide_symptom
+  - provide_symptom_location
+  - provide_symptom_duration
+  - provide_symptom_severity
+  - symptom_factor
+  
+  # Appointment booking intents
+  - book_appointment
+  - provide_appointment_date
+  - provide_appointment_time
+  - provide_appointment_reason
+  - cancel_appointment
+  - reschedule_appointment
+  - check_appointment
+  
+  # Emergency-related intents
+  - emergency_help
+  - find_emergency_room
+  
+  # Health information intents
+  - ask_health_question
+  - ask_medication_info
+  - ask_disease_info
+  - ask_prevention_info
+  - ask_vaccine_info
+  - ask_nutrition_info
+  - ask_fitness_info
+  - ask_mental_health
+  - ask_sleep_info
+  - ask_wellness_info
+  - ask_senior_health
+  - ask_pediatric_health
+  - ask_pregnancy_info
+  
+  # Medical test and procedure intents
+  - ask_medical_test
+  - ask_surgery_info
+  
+  # Healthcare system intents
+  - ask_insurance_info
+  - ask_telemedicine_info
+  
+  # Additional healthcare services intents
+  - ask_medical_devices
+  - ask_first_aid
+  - find_doctor
+  
+  # Miscellaneous
+  - out_of_scope
+  - nlu_fallback
+
+entities:
+  - symptom
+  - body_part
+  - duration
+  - severity
+  - factor
+  - date
+  - time
+  - reason
+  - medication
+  - condition
+  - diet
+  - nutrient
+  - food
+  - health_concern
+  - goal
+  - exercise_type
+  - demographic
+  - exercise_term
+  - time_constraint
+  - mental_issue
+  - treatment
+  - sleep_issue
+  - sleep_aid
+  - sleep_term
+  - wellness_term
+  - wellness_area
+  - wellness_practice
+  - age_group
+  - service
+  - device
+  - concept
+  - legal_document
+  - test_type
+  - procedure
+  - surgery_type
+  - approach
+  - setting
+  - insurance_term
+  - insurance_type
+  - issue
+  - specialty
+  - injury
+  - technique
+  - supply
+  - stage
+  - complication
+  - process
+  - topic
+  - behavior
+  - vaccine_type
+  - city
+
+slots:
+  symptom:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: symptom
+  
+  body_part:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: body_part
+  
+  duration:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: duration
+  
+  severity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: severity
+  
+  factor:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: factor
+  
+  date:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: date
+  
+  time:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: time
+  
+  reason:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: reason
+  
+  medication:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: medication
+  
+  condition:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: condition
+  
+  city:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: city
+  
+  specialty:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: specialty
+  
+  vaccine_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: vaccine_type
+  
+  nutrient:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: nutrient
+  
+  exercise_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: exercise_type
+  
+  mental_issue:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: mental_issue
+  
+  sleep_issue:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: sleep_issue
+  
+  wellness_area:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: wellness_area
+  
+  health_concern:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: health_concern
+  
+  test_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: test_type
+  
+  surgery_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: surgery_type
+  
+  insurance_term:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: insurance_term
+  
+  concept:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: concept
+  
+  device:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: device
+  
+  injury:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: injury
+  
+  requested_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+
+forms:
+  symptom_assessment_form:
+    required_slots:
+      - symptom
+      - body_part
+      - duration
+      - severity
+  
+  appointment_form:
+    required_slots:
+      - date
+      - time
+      - reason
+
+responses:
+  # Basic conversation responses
+  utter_greet:
+    - text: "Hello! I'm your HealthAssist medical assistant. How can I help you today?"
+    - text: "Hi there! I'm HealthAssist, your virtual medical assistant. What can I do for you?"
+    - text: "Welcome to HealthAssist! I'm here to help with your medical questions and concerns."
+  
+  utter_goodbye:
+    - text: "Goodbye! Take care of your health."
+    - text: "Take care! Remember to reach out if you need medical assistance."
+    - text: "Have a great day! Stay healthy and well."
+  
+  utter_affirm:
+    - text: "Great!"
+    - text: "I understand."
+    - text: "Perfect, let's continue."
+  
+  utter_deny:
+    - text: "I understand. Let me know how else I can help you."
+    - text: "No problem. Is there anything else you'd like to discuss?"
+    - text: "Alright. What would you like to do instead?"
+  
+  utter_thank:
+    - text: "You're welcome! I'm happy to help."
+    - text: "It's my pleasure to assist you with your health questions."
+    - text: "Anytime! That's what I'm here for."
+  
+  utter_bot_challenge:
+    - text: "I am a medical assistant chatbot designed to provide health information and guidance. While I'm not a human doctor, I'm here to help answer your questions and direct you to appropriate resources."
+    - text: "I'm an AI assistant specialized in healthcare. I can provide general medical information, but remember to consult with a healthcare professional for personalized medical advice."
+  
+  # Medical symptom assessment responses
+  utter_ask_symptoms:
+    - text: "What symptoms are you experiencing? Please describe them briefly."
+    - text: "Could you tell me about the symptoms you're having?"
+    - text: "What health concerns are you experiencing today?"
+  
+  utter_ask_symptom_location:
+    - text: "Where exactly are you experiencing {symptom}?"
+    - text: "Can you point to where the {symptom} is located?"
+    - text: "Which part of your body is affected by the {symptom}?"
+  
+  utter_ask_symptom_duration:
+    - text: "How long have you been experiencing these symptoms?"
+    - text: "When did the {symptom} start?"
+    - text: "For how long have you had this {symptom}?"
+  
+  utter_ask_symptom_severity:
+    - text: "On a scale of 1-10, how severe would you rate your {symptom}?"
+    - text: "How would you describe the severity of your {symptom}?"
+    - text: "Is your {symptom} mild, moderate, or severe?"
+  
+  utter_ask_symptom_factors:
+    - text: "Is there anything that makes your {symptom} better or worse?"
+    - text: "Have you noticed anything that triggers or relieves your {symptom}?"
+    - text: "Does anything specific improve or worsen your {symptom}?"
+  
+  utter_symptom_assessment_complete:
+    - text: "Based on the information you've provided about your {symptom} in your {body_part} for {duration} with {severity} severity, here are some potential causes and recommendations. Please remember this is not a diagnosis, and you should consult with a healthcare professional for proper medical advice."
+    - text: "Thank you for providing details about your symptoms. While I can offer general information about {symptom}, it's important to consult with a healthcare professional for a proper diagnosis and treatment plan."
+  
+  # Appointment booking responses
+  utter_ask_appointment_date:
+    - text: "When would you like to schedule your appointment?"
+    - text: "What date works best for you?"
+    - text: "Which day would you prefer for your appointment?"
+  
+  utter_ask_appointment_time:
+    - text: "What time would you prefer for your appointment on {date}?"
+    - text: "Do you prefer a morning or afternoon appointment on {date}?"
+    - text: "What time of day works best for you on {date}?"
+  
+  utter_ask_appointment_reason:
+    - text: "What's the reason for your visit?"
+    - text: "Could you briefly describe why you need this appointment?"
+    - text: "What would you like to discuss during your appointment?"
+  
+  utter_appointment_confirmed:
+    - text: "Great! Your appointment has been scheduled for {date} at {time} for {reason}. We'll send you a confirmation email shortly."
+    - text: "Your appointment is confirmed for {date} at {time}. Please arrive 15 minutes early to complete any necessary paperwork."
+  
+  utter_cancel_appointment:
+    - text: "I've canceled your appointment. Would you like to reschedule for another time?"
+    - text: "Your appointment has been successfully canceled. Is there anything else I can help you with?"
+  
+  # Emergency responses
+  utter_emergency_help:
+    - text: "If you're experiencing a medical emergency, please call emergency services (911 in the US) immediately. Do not wait for assistance through this chat."
+    - text: "This sounds like a medical emergency. Please call 911 or your local emergency number, or go to the nearest emergency room immediately."
+  
+  utter_find_emergency_room:
+    - text: "I can help you locate the nearest emergency room. Could you please share your current location?"
+    - text: "To find the closest emergency room, I'll need your location information. Can you provide that?"
+  
+  # Health information responses
+  utter_health_question:
+    - text: "Here's some information about {condition}: [INFORMATION_PLACEHOLDER]. Remember that this is general information, and you should consult with a healthcare provider for personalized advice."
+  
+  utter_medication_info:
+    - text: "Here's information about {medication}: [MEDICATION_INFO_PLACEHOLDER]. Always follow your doctor's instructions and the medication label when taking any medication."
+  
+  utter_disease_info:
+    - text: "{condition} is [CONDITION_DESCRIPTION_PLACEHOLDER]. Common symptoms include [SYMPTOMS_PLACEHOLDER]. Treatment options may include [TREATMENTS_PLACEHOLDER]. It's important to consult with a healthcare provider for proper diagnosis and treatment."
+  
+  utter_prevention_info:
+    - text: "To help prevent {condition}, you can: [PREVENTION_TIPS_PLACEHOLDER]. Always consult with a healthcare provider for personalized prevention strategies."
+  
+  utter_vaccine_info:
+    - text: "The {vaccine_type} vaccine [VACCINE_INFO_PLACEHOLDER]. It's recommended for [RECOMMENDATION_PLACEHOLDER]. Side effects may include [SIDE_EFFECTS_PLACEHOLDER]. Consult with your healthcare provider about whether this vaccine is appropriate for you."
+  
+  utter_nutrition_info:
+    - text: "Here's information about {nutrient} in your diet: [NUTRITION_INFO_PLACEHOLDER]. Remember that balanced nutrition is key to overall health."
+  
+  utter_fitness_info:
+    - text: "Here's information about {exercise_type}: [FITNESS_INFO_PLACEHOLDER]. Remember to start any new exercise regimen gradually and consult with a healthcare provider if you have existing health conditions."
+  
+  utter_mental_health_info:
+    - text: "Here's information about {mental_issue}: [MENTAL_HEALTH_INFO_PLACEHOLDER]. If you're experiencing severe symptoms, please reach out to a mental health professional."
+  
+  utter_sleep_info:
+    - text: "Here's information about {sleep_issue}: [SLEEP_INFO_PLACEHOLDER]. Good sleep hygiene is essential for overall health and wellbeing."
+  
+  utter_wellness_info:
+    - text: "Here's information about {wellness_area}: [WELLNESS_INFO_PLACEHOLDER]. Wellness practices can complement traditional healthcare approaches."
+  
+  # Specialized healthcare responses
+  utter_senior_health:
+    - text: "Here's information about {health_concern} for seniors: [SENIOR_HEALTH_INFO_PLACEHOLDER]. Regular check-ups with healthcare providers are especially important for older adults."
+  
+  utter_pediatric_health:
+    - text: "Here's information about {condition} in children: [PEDIATRIC_HEALTH_INFO_PLACEHOLDER]. Always consult with a pediatrician for concerns about your child's health."
+  
+  utter_pregnancy_info:
+    - text: "Here's information about {symptom} during pregnancy: [PREGNANCY_INFO_PLACEHOLDER]. Regular prenatal care is essential during pregnancy."
+  
+  utter_medical_test_info:
+    - text: "Here's information about the {test_type} test: [TEST_INFO_PLACEHOLDER]. Your healthcare provider can explain what the results mean in your specific case."
+  
+  utter_surgery_info:
+    - text: "Here's information about {surgery_type} surgery: [SURGERY_INFO_PLACEHOLDER]. Your surgeon can provide specific details about preparation, procedure, and recovery."
+  
+  # Healthcare system responses
+  utter_insurance_info:
+    - text: "Here's information about {insurance_term}: [INSURANCE_INFO_PLACEHOLDER]. For specific coverage questions, it's best to contact your insurance provider directly."
+  
+  utter_telemedicine_info:
+    - text: "Here's information about {concept} in telemedicine: [TELEMEDICINE_INFO_PLACEHOLDER]. Virtual healthcare options have expanded significantly in recent years."
+  
+  # Additional healthcare services responses
+  utter_medical_devices:
+    - text: "Here's information about {device}: [DEVICE_INFO_PLACEHOLDER]. Always follow manufacturer instructions and consult with a healthcare provider if you have questions about medical devices."
+  
+  utter_first_aid:
+    - text: "For {injury}, here's first aid information: [FIRST_AID_INFO_PLACEHOLDER]. If the condition is severe or doesn't improve, seek medical attention immediately."
+  
+  # Fallback responses
+  utter_default:
+    - text: "I'm sorry, I didn't understand that. Could you rephrase?"
+    - text: "I'm not sure I follow. Could you try asking in a different way?"
+    - text: "I didn't catch that. Could you please try again?"
+  
+  utter_out_of_scope:
+    - text: "I'm sorry, but that's outside the scope of my medical knowledge. I'm designed to help with health-related questions."
+    - text: "I can't help with that topic as I'm focused on providing health-related information. Is there a medical question I can assist you with?"
+    - text: "That falls outside my area of expertise. I'm here to help with healthcare questions and concerns."
+  utter_vaccine_info:
+    - text: "The flu vaccine helps protect against influenza viruses. It's recommended for most people, especially those at higher risk such as young children, elderly, and people with chronic health conditions. Common side effects are mild, such as soreness at the injection site or a low fever."
+actions:
+  - action_reset_slots
+  - validate_symptom_assessment_form
+  - validate_appointment_form
+  - action_symptom_assessment
+  - action_provide_health_info
+  - action_book_appointment
+  - action_check_appointment
+  - action_find_emergency_room
+  - action_search_medication_info
+  - action_search_disease_info
+  - action_find_doctor
+  - utter_greet
+  - utter_goodbye
+  - utter_affirm
+  - utter_deny
+  - utter_thank
+  - utter_bot_challenge
+  - utter_ask_symptoms
+  - utter_ask_symptom_location
+  - utter_ask_symptom_duration
+  - utter_ask_symptom_severity
+  - utter_ask_symptom_factors
+  - utter_symptom_assessment_complete
+  - utter_ask_appointment_date
+  - utter_ask_appointment_time
+  - utter_ask_appointment_reason
+  - utter_appointment_confirmed
+  - utter_cancel_appointment
+  - utter_emergency_help
+  - utter_find_emergency_room
+  - utter_health_question
+  - utter_medication_info
+  - utter_disease_info
+  - utter_prevention_info
+  - utter_vaccine_info
+  - utter_nutrition_info
+  - utter_fitness_info
+  - utter_mental_health_info
+  - utter_sleep_info
+  - utter_wellness_info
+  - utter_senior_health
+  - utter_pediatric_health
+  - utter_pregnancy_info
+  - utter_medical_test_info
+  - utter_surgery_info
+  - utter_insurance_info
+  - utter_telemedicine_info
+  - utter_medical_devices
+  - utter_first_aid
+  - utter_default
+  - utter_out_of_scope
+
+session_config:
+  session_expiration_time: 60  # minutes
+  carry_over_slots_to_new_session: true
+>>>>>>> 5c3f4fce0d2e22448d72d19cdb4bc93727b8afc9
